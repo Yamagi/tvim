@@ -1,0 +1,35 @@
+# Alacritty configuration, imitates the behaviour of gvim.
+
+bell:
+  # Visual bell animation.
+  animation: EaseOutQuint
+  duration: 5
+  color: '#cacdcb'
+
+env:
+  TERM: alacritty
+
+font:
+  # Font family.
+  normal:
+    family: iA Writer Mono S
+    style: Regular
+
+  # Font size.
+  size: 11.0
+
+mouse:
+  # No mouse cursor when typing.
+  hide_when_typing: true
+
+url:
+    # URL launcher.
+    launcher:
+      program: xdg-open
+      args: []
+
+window:
+  # Initial window size.
+  dimensions:
+    columns: 110
+    lines: 55

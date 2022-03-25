@@ -1,0 +1,59 @@
+#!/bin/sh
+
+# A simpler wrapper script to start a Vim inside a *modern*
+# terminal. Supported terminals are:
+#  1. alacritty
+#  2. gnome-terminal
+# The first terminal found in $ PATH will be used.
+#
+# Behaves more or less like gvim without being gvim. For
+# the best experience it's recommended to add the Terminus
+# plugin to Vim: https://github.com/wincent/terminus
+#
+# Depending on personal preferences and the color scheme
+# used Vim should be configured with 'set termguicolors'
+# and support for modern terminal features like italics
+# or colored undercurls.
+
+# ---------
+
+# Path to config dir.
+CONFDIR=$(realpath "$(dirname $0)/../conf")
+
+# ---------
+
+# Quits with an error message.
+errmsg() {
+	echo "$@" 1>&2
+	exit 1
+}
+
+# --------
+
+# We need vim, of course.
+command -v vim >/dev/null 2>&1
+if [ $? -ne 0 ] ; then
+	errmsg "Couldn't find vim in \$PATH. Sorry."
+fi
+
+# Alacritty
+command -v alacritty >/dev/null 2>&1
+if [ $? -eq 0 ] ; then
+	# FreeBSD hasn't got an alacritty termcap entry...
+	if [ "$(uname -s)" == "FreeBSD" ] ; then
+		export TERMCAP="alacritty:ts=\E]2;:fs=^G:tc=xterm-256color:"
+	fi
+	exec alacritty --config-file $CONFDIR/alacritty.yml -e vim "$@" &
+	exit 0
+fi
+
+# gnome-terminal
+command -v gnome-terminal >/dev/null 2>&1
+if [ $? -eq 0 ] ; then
+	exec gnome-terminal --window --hide-menubar --wait \
+		--geometry=110x55 -- vim "$@" &
+	exit 0
+fi
+
+# No terminal found.
+errmg "No compatible terminal found. Sorry."
