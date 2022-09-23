@@ -14,6 +14,10 @@
 # used Vim should be configured with 'set termguicolors'
 # and support for modern terminal features like italics
 # or colored undercurls.
+#
+# Neither alacritty nor gnome-terminal pass stdin to the
+# vim subprocess. Shell substitutions can be used to work
+# around that: tvim <($command_with_output)
 
 # ---------
 
@@ -43,15 +47,16 @@ if [ $? -eq 0 ] ; then
 	if [ "$(uname -s)" == "FreeBSD" ] ; then
 		export TERMCAP="alacritty:ts=\E]2;:fs=^G:tc=xterm-256color:"
 	fi
-	exec alacritty --config-file $CONFDIR/alacritty.yml -e vim "$@" &
+	exec nohup alacritty --config-file $CONFDIR/alacritty.yml \
+		-e sh -lc "vim $@" >&/dev/null &
 	exit 0
 fi
 
 # gnome-terminal
 command -v gnome-terminal >/dev/null 2>&1
 if [ $? -eq 0 ] ; then
-	exec gnome-terminal --window --hide-menubar --wait \
-		--geometry=110x55 -- vim "$@" &
+	exec nohup gnome-terminal --window --hide-menubar --wait \
+		--geometry=110x55 -- sh -lc "vim $@" >&/dev/null &
 	exit 0
 fi
 
