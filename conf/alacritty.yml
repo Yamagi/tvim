@@ -33,3 +33,6 @@ window:
   dimensions:
     columns: 110
     lines: 55
+
+  # Light window decorations.
+  decorations_theme_variant: light
