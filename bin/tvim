@@ -4,16 +4,16 @@
 # terminal. Supported terminals are:
 #  1. alacritty
 #  2. gnome-terminal
-# The first terminal found in $ PATH will be used.
+# The first terminal found in $PATH will be used.
 #
 # Behaves more or less like gvim without being gvim. For
 # the best experience it's recommended to add the Terminus
 # plugin to Vim: https://github.com/wincent/terminus
 #
-# Depending on personal preferences and the color scheme
-# used Vim should be configured with 'set termguicolors'
-# and support for modern terminal features like italics
-# or colored undercurls.
+# Depending on personal preferences and the color scheme,
+# Vim should be configured with 'set termguicolors' and
+# support for "modern" terminal features like italics or
+# colored undercurls.
 #
 # Neither alacritty nor gnome-terminal pass stdin to the
 # vim subprocess. Shell substitutions can be used to work
@@ -40,7 +40,7 @@ if [ $? -ne 0 ] ; then
 	errmsg "Couldn't find vim in \$PATH. Sorry."
 fi
 
-# Alacritty
+# Check for alacritty...
 command -v alacritty >/dev/null 2>&1
 if [ $? -eq 0 ] ; then
 	# FreeBSD hasn't got an alacritty termcap entry...
@@ -52,7 +52,7 @@ if [ $? -eq 0 ] ; then
 	exit 0
 fi
 
-# gnome-terminal
+# ...for gnome-terminal...
 command -v gnome-terminal >/dev/null 2>&1
 if [ $? -eq 0 ] ; then
 	exec nohup gnome-terminal --window --hide-menubar --wait \
@@ -60,5 +60,5 @@ if [ $? -eq 0 ] ; then
 	exit 0
 fi
 
-# No terminal found.
-errmg "No compatible terminal found. Sorry."
+# ...not supported terminal exmulator was found.
+errmg "No supported terminal emulator found. Sorry."
