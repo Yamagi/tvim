@@ -12,7 +12,7 @@ env:
 font:
   # Font family.
   normal:
-    family: iA Writer Mono S
+    family: Kiwi Mono
     style: Regular
 
   # Font size.
