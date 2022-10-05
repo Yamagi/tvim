@@ -48,7 +48,7 @@ if [ $? -eq 0 ] ; then
 		export TERMCAP="alacritty:ts=\E]2;:fs=^G:tc=xterm-256color:"
 	fi
 	exec nohup alacritty --config-file $CONFDIR/alacritty.yml \
-		-e sh -lc "vim $@" >&/dev/null &
+		-e sh -lc "sleep 0.025 ; vim $@" >&/dev/null &
 	exit 0
 fi
 
@@ -56,7 +56,7 @@ fi
 command -v gnome-terminal >/dev/null 2>&1
 if [ $? -eq 0 ] ; then
 	exec nohup gnome-terminal --window --hide-menubar --wait \
-		--geometry=110x55 -- sh -lc "vim $@" >&/dev/null &
+		--geometry=110x55 -- sh -lc "sleep 0.025 ; vim $@" >&/dev/null &
 	exit 0
 fi
 
