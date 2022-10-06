@@ -1,7 +1,7 @@
 # tvim
 
-A simpler wrapper script to start a Vim inside a *modern*
-terminal. Supported terminals are:
+A simpler script to start a Vim inside a *modern* terminal
+emulator. Supported terminals are:
  1. alacritty
  2. gnome-terminal
 The first terminal found in $PATH will be used.

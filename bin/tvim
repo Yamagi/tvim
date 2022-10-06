@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# A simpler wrapper script to start a Vim inside a *modern*
-# terminal. Supported terminals are:
+# A wrapper script to start a Vim inside a *modern* terminal
+# emulator. Supported terminals are:
 #  1. alacritty
 #  2. gnome-terminal
 # The first terminal found in $PATH will be used.
@@ -60,5 +60,5 @@ if [ $? -eq 0 ] ; then
 	exit 0
 fi
 
-# ...not supported terminal exmulator was found.
+# ...no supported terminal emulator was found.
 errmg "No supported terminal emulator found. Sorry."
