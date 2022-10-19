@@ -36,3 +36,6 @@ window:
 
   # Light window decorations.
   decorations_theme_variant: light
+
+  # Center the terminal content.
+  dynamic_padding: true
