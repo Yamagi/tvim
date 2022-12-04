@@ -44,7 +44,7 @@ fi
 command -v alacritty >/dev/null 2>&1
 if [ $? -eq 0 ] ; then
 	# FreeBSD hasn't got an alacritty termcap entry...
-	if [ "$(uname -s)" == "FreeBSD" ] ; then
+	if [ "$(uname -s)" = "FreeBSD" ] ; then
 		export TERMCAP="alacritty:ts=\E]2;:fs=^G:tc=xterm-256color:"
 	fi
 	exec nohup alacritty --config-file $CONFDIR/alacritty.yml \
