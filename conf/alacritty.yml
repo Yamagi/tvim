@@ -35,7 +35,7 @@ window:
     lines: 55
 
   # Light window decorations.
-  decorations_theme_variant: light
+  decorations_theme_variant: Light
 
   # Center the terminal content.
   dynamic_padding: true
