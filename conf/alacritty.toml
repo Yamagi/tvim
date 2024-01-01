@@ -1,0 +1,33 @@
+# Alacritty configuration, imitates the behaviour of gvim.
+
+# Visual bell animation.
+[bell]
+animation = "EaseOutQuint"
+color = "#cacdcb"
+duration = 5
+
+[env]
+TERM = "alacritty"
+
+# Font family.
+[font]
+size = 11.0
+
+[font.normal]
+family = "Kiwi Mono"
+style = "Regular"
+
+# No mouse cursor when typing.
+[mouse]
+hide_when_typing = true
+
+# Light window decorations.
+# Center the terminal content.
+[window]
+decorations_theme_variant = "Light"
+dynamic_padding = true
+
+# Initial window size.
+[window.dimensions]
+columns = 110
+lines = 55

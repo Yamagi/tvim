@@ -47,7 +47,7 @@ if [ $? -eq 0 ] ; then
 	if [ "$(uname -s)" = "FreeBSD" ] ; then
 		export TERMCAP="alacritty:ts=\E]2;:fs=^G:tc=xterm-256color:"
 	fi
-	exec nohup alacritty --config-file $CONFDIR/alacritty.yml \
+	exec nohup alacritty --config-file $CONFDIR/alacritty.toml \
 		-e sh -c "sleep 0.1 ; vim '$@'" >/dev/null 2>&1 &
 	exit 0
 fi
