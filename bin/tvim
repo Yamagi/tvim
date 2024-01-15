@@ -47,17 +47,28 @@ if [ $? -eq 0 ] ; then
 	if [ "$(uname -s)" = "FreeBSD" ] ; then
 		export TERMCAP="alacritty:ts=\E]2;:fs=^G:tc=xterm-256color:"
 	fi
-	exec nohup alacritty --config-file $CONFDIR/alacritty.toml \
-		-e sh -c "sleep 0.1 ; vim '$@'" >/dev/null 2>&1 &
+	if [ $# -eq 0 ] ; then
+		exec nohup alacritty --config-file $CONFDIR/alacritty.toml \
+			-e sh -c "sleep 0.1 ; vim" >/dev/null 2>&1 &
+	else
+		exec nohup alacritty --config-file $CONFDIR/alacritty.toml \
+			-e sh -c "sleep 0.1 ; vim '$@'" >/dev/null 2>&1 &
+	fi
 	exit 0
 fi
 
 # ...for gnome-terminal...
 command -v gnome-terminal >/dev/null 2>&1
 if [ $? -eq 0 ] ; then
-	exec nohup gnome-terminal --window --hide-menubar --wait \
-		--geometry=110x55 -- sh -c "sleep 0.1 ; vim '$@'" \
-		>/dev/null 2>&1 &
+	if [ $# -eq 0 ] ; then
+		exec nohup gnome-terminal --window --hide-menubar --wait \
+			--geometry=110x55 -- sh -c "sleep 0.1 ; vim" \
+			>/dev/null 2>&1 &
+	else
+		exec nohup gnome-terminal --window --hide-menubar --wait \
+			--geometry=110x55 -- sh -c "sleep 0.1 ; vim '$@'" \
+			>/dev/null 2>&1 &
+	fi
 	exit 0
 fi
 
